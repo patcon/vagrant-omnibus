@@ -122,7 +122,7 @@ module VagrantPlugins
               install_cmd = "cmd.exe /c #{install_script_name} #{version}"
             else
               install_cmd =
-                "sh #{install_script_name} -v #{shell_escaped_version} 2>&1"
+                "mkdir -p /var/cache/chef && sh #{install_script_name} -v #{shell_escaped_version} -d /var/cache/chef 2>&1"
             end
             comm.sudo(install_cmd) do |type, data|
               if [:stderr, :stdout].include?(type)
